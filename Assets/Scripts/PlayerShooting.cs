@@ -8,7 +8,7 @@ public class PlayerShooting : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public float bulletSpeed = 50f;
-    public float fireRate = 0.2f; // seconds between shots (set to 0 for infinite rapid fire)
+    public float fireRate = 0.2f;
 
     [Header("Audio")]
     public AudioClip shootSound;
@@ -23,7 +23,6 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-        // Fire1 = left mouse button (default Unity input)
         if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
         {
             Shoot();
