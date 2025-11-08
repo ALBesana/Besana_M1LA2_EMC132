@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public int scoreValue = 1;
     public AudioClip deathSound;
     private AudioSource audioSource;
+    private bool isDead = false;
 
     void Start()
     {
@@ -15,9 +16,13 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        if (isDead) return;
+        isDead = true;
+        
         ScoreManager.instance.AddScore(scoreValue);
-        if (deathSound && audioSource)
-            audioSource.PlayOneShot(deathSound);
+
+        if (deathSound)
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
 
         Destroy(gameObject);
     }
